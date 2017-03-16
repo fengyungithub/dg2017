@@ -1,0 +1,27 @@
+channel: '#site1'
+
+application: previousnext/lamp:latest
+
+prepare: &prepare
+  - make init
+  - make mkdirs
+  - make styleguide
+  - git config --global user.email "${GIT_EMAIL}" && git config --global user.name "${GIT_USER}"
+
+test: &test
+  - make ci-lint-php
+  - make lint-sass-js
+  - make build
+  - make ci-test
+
+test_pr:
+  setup: *prepare
+  steps: *test
+
+test_head:
+  setup: *prepare
+  steps: *test
+
+patch:
+  steps:
+    - sh scripts/patchy.sh

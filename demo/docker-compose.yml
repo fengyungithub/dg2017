@@ -1,0 +1,38 @@
+version: '2'
+services:
+  api:
+    build: ./api
+    ports:
+      - "8080:8080"
+  site1:
+    image: previousnext/php:7.0-dev
+    volumes:
+      - ./site1:/data
+    ports:
+      - "8081:80"
+    links:
+      - db1:db
+      - api 
+  db1:
+    image: mariadb
+    environment:
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_DATABASE=local
+     - MYSQL_USER=drupal
+     - MYSQL_PASSWORD=drupal
+  site2:
+    image: previousnext/php:7.0-dev
+    volumes:
+      - ./site2:/data
+    ports:
+      - "8082:80"
+    links:
+      - db2:db
+      - api
+  db2:
+    image: mariadb
+    environment:
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_DATABASE=local
+     - MYSQL_USER=drupal
+     - MYSQL_PASSWORD=drupal
