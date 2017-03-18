@@ -1,0 +1,7 @@
+parameters:
+  factory.keyvalue:
+    entity_storage__remote_article: remote_article.api
+services:
+  remote_article.api:
+    class: Drupal\remote_article\Entity\RemoteArticleStore\RemoteArticleEntityKeyValueFactory
+    arguments: ['@http_client']
