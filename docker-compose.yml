@@ -23,7 +23,7 @@ services:
      - MYSQL_PASSWORD=drupal
   # The second site, used to show content shared from API.
   site2:
-    image: previousnext/php:7.0-dev
+    build: ./site2
     volumes:
       - ./site2:/data
     ports:

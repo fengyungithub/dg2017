@@ -17,6 +17,12 @@ Drupal Gov 2017 - Drupal 8 and Microservices
 make start
 ```
 
+You will notice the following tabs open in your browser:
+
+* http://localhost:8081 (Site 1)
+* http://localhost:8082 (Site 2)
+* http://localhost:9000 (Slides)
+
 **Seed some demo articles**
 
 ```bash

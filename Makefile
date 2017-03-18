@@ -14,8 +14,9 @@ install:
 	docker-compose exec site2 /bin/bash -c 'drush site-install -y --site-name="Dept. of Cool" --account-pass=password standard && chown -R www-data:www-data app'
 
 modules:
-	docker-compose exec site1 /bin/bash -c 'drush en -y remote_article'
-	# docker-compose exec site2 /bin/bash -c 'drush en -y remote_article'
+	# Have returned true because of 'make: *** [modules] Error 129'
+	docker-compose exec site1 /bin/bash -c 'drush en -y remote_article || true'
+	docker-compose exec site2 /bin/bash -c 'drush en -y remote_article || true'
 
 open:
 	xdg-open http://localhost:9000
