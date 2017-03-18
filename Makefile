@@ -21,3 +21,6 @@ open:
 	xdg-open http://localhost:9000
 	xdg-open http://localhost:8081
 	xdg-open http://localhost:8082
+
+seed:
+	docker-compose exec api /bin/sh -c 'cli'
