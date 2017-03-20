@@ -10,6 +10,4 @@ use Drupal\Core\Entity\ContentEntityDeleteForm;
  * @ingroup remote_article
  */
 class RemoteArticleEntityDeleteForm extends ContentEntityDeleteForm {
-
-
 }

@@ -26,7 +26,7 @@ class RemoteArticleEntityKeyValueFactory implements KeyValueFactoryInterface {
    * @param \Drupal\Core\Database\Connection $connection
    *   The Connection object containing the key-value tables.
    */
-  function __construct(\GuzzleHttp\Client $client) {
+  function __construct(\Articles\ArticlesClient $client) {
     $this->client = $client;
   }
 

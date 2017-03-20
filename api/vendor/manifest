@@ -63,6 +63,18 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/gosuri/uitable",
+			"repository": "https://github.com/gosuri/uitable",
+			"revision": "36ee7e946282a3fb1cfecd476ddc9b35d8847e42",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/mattn/go-runewidth",
+			"repository": "https://github.com/mattn/go-runewidth",
+			"revision": "14207d285c6c197daabb5c9793d63e7af9ab2d50",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/zemirco/uid",
 			"repository": "https://github.com/zemirco/uid",
 			"revision": "3763f3c458321cb2e483ccefbcd4122b00393824",

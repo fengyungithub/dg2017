@@ -23,17 +23,21 @@ func (a *articlesServer) Create(ctx context.Context, in *pb.CreateRequest) (*pb.
 	// Generate a new hash for this new peice of content.
 	u := uid.New(20)
 
-	// Assign this ID to our article as well.
-	in.Article.Id = u
-
 	// Add it to this APIs in memory storage.
 	a.articles[u] = in.Article
+
+	// Assign this ID to our article as well.
+	a.articles[u].Id = u
+
+	log.Println("Creating new article:", u)
 
 	// Pass back the hash, so the user has an ID to what they created.
 	return &pb.CreateResponse{Article: in.Article}, nil
 }
 
 func (a *articlesServer) Get(ctx context.Context, in *pb.GetRequest) (*pb.GetResponse, error) {
+	log.Println("Querying for article with ID:", in.Id)
+
 	// Do we have this item of content? If we do we should return it.
 	if val, ok := a.articles[in.Id]; ok {
 		return &pb.GetResponse{Article: val}, nil
@@ -42,18 +46,26 @@ func (a *articlesServer) Get(ctx context.Context, in *pb.GetRequest) (*pb.GetRes
 	return nil, fmt.Errorf("Cannot find content:", in.Id)
 }
 
+func (a *articlesServer) Update(ctx context.Context, in *pb.UpdateRequest) (*pb.UpdateResponse, error) {
+	log.Println("Updating article:", in.Article.Id)
+	a.articles[in.Article.Id] = in.Article
+	return &pb.UpdateResponse{}, nil
+}
+
 func (a *articlesServer) Delete(ctx context.Context, in *pb.DeleteRequest) (*pb.DeleteResponse, error) {
+	log.Println("Deleting article:", in.Id)
+
 	// Loop over all the provided IPs, and remove the article if it exists.
-	for _, i := range in.Ids {
-		if _, ok := a.articles[i]; ok {
-			delete(a.articles, i)
-		}
+	if _, ok := a.articles[in.Id]; ok {
+		delete(a.articles, in.Id)
 	}
 
-	return nil, nil
+	return &pb.DeleteResponse{}, nil
 }
 
 func (a *articlesServer) List(ctx context.Context, in *pb.ListRequest) (*pb.ListResponse, error) {
+	log.Println("Listing all articles")
+
 	resp := new(pb.ListResponse)
 
 	// Rebuild the list from a map to a slice.

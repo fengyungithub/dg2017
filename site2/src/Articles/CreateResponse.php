@@ -14,9 +14,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <code>string id = 1;</code>
+     * <code>.articles.Article article = 1;</code>
      */
-    private $id = '';
+    private $article = null;
 
     public function __construct() {
         \GPBMetadata\Articles::initOnce();
@@ -24,20 +24,20 @@ class CreateResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <code>string id = 1;</code>
+     * <code>.articles.Article article = 1;</code>
      */
-    public function getId()
+    public function getArticle()
     {
-        return $this->id;
+        return $this->article;
     }
 
     /**
-     * <code>string id = 1;</code>
+     * <code>.articles.Article article = 1;</code>
      */
-    public function setId($var)
+    public function setArticle(&$var)
     {
-        GPBUtil::checkString($var, True);
-        $this->id = $var;
+        GPBUtil::checkMessage($var, \Articles\Article::class);
+        $this->article = $var;
     }
 
 }

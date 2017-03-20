@@ -126,8 +126,6 @@ parameters:
   # Not recommended in production environments
   # @default false
   http.response.debug_cacheability_headers: false
-  factory.keyvalue:
-    {}
     # Default key/value storage service to use.
     # @default keyvalue.database
     # default: keyvalue.database

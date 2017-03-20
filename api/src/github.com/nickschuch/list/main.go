@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/gosuri/uitable"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
@@ -31,31 +32,19 @@ func main() {
 
 	client := pb.NewArticlesClient(conn)
 
-	articles := []*pb.Article{
-		&pb.Article{
-			Title: "This is a test",
-			Body:  "Foo bar baz",
-		},
-	}
-
-	// Seed the API with our data from above.
-	for _, article := range articles {
-		_, err := client.Create(context.Background(), &pb.CreateRequest{Article: article})
-		if err != nil {
-			log.Println("Failed to create article:", article.Title, err)
-			continue
-		}
-
-		log.Println("Created article:", article.Title)
-	}
-
 	// Query and print out all the data that lives in the
 	resp, err := client.List(context.Background(), &pb.ListRequest{})
 	if err != nil {
 		log.Fatalf("Failed to list articles:", err)
 	}
 
+	table := uitable.New()
+	table.MaxColWidth = 50
+
+	table.AddRow("ID", "TITLE", "BODY")
 	for _, article := range resp.Articles {
-		fmt.Println(article.Title)
+		table.AddRow(article.Id, article.Title, article.Body)
 	}
+
+	fmt.Println(table)
 }

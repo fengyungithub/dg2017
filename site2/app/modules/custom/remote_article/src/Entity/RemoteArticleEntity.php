@@ -3,9 +3,7 @@
 namespace Drupal\remote_article\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -54,6 +52,17 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  * )
  */
 class RemoteArticleEntity extends ContentEntityBase implements RemoteArticleEntityInterface {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function id() {
+    $value = $this->get('id')->value;
+    if (empty($value)) {
+        return 'NEW';
+    }
+    return $value;
+  }
 
   /**
    * {@inheritdoc}
@@ -131,7 +140,6 @@ class RemoteArticleEntity extends ContentEntityBase implements RemoteArticleEnti
    * {@inheritdoc}
    */
   public static function create(array $values = array()) {
-
     $entity_manager = \Drupal::entityManager();
     return $entity_manager->getStorage($entity_manager->getEntityTypeFromClass(get_called_class()))->create($values);
   }

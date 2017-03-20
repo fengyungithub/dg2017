@@ -14,9 +14,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <code>repeated string ids = 1;</code>
+     * <code>string id = 1;</code>
      */
-    private $ids;
+    private $id = '';
 
     public function __construct() {
         \GPBMetadata\Articles::initOnce();
@@ -24,20 +24,20 @@ class DeleteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <code>repeated string ids = 1;</code>
+     * <code>string id = 1;</code>
      */
-    public function getIds()
+    public function getId()
     {
-        return $this->ids;
+        return $this->id;
     }
 
     /**
-     * <code>repeated string ids = 1;</code>
+     * <code>string id = 1;</code>
      */
-    public function setIds(&$var)
+    public function setId($var)
     {
-        GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->ids = $var;
+        GPBUtil::checkString($var, True);
+        $this->id = $var;
     }
 
 }

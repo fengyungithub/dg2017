@@ -24,4 +24,7 @@ open:
 	xdg-open http://localhost:8082
 
 seed:
-	docker-compose exec api /bin/sh -c 'cli'
+	docker-compose exec api /bin/sh -c 'seed'
+
+list:
+	docker-compose exec api /bin/sh -c 'list'

@@ -93,18 +93,22 @@ class RemoteArticleContentEntityStorage extends StorageBase {
    * {@inheritdoc}
    */
   public function set($key, $values) {
-    $request = new Request('POST', 'http://api:8080/remote_article/' . $key, [], json_encode(array(
-      'title' => $values['title'][0]['value'],
-      'body' => $values['body'][0]['value'],
-    )));
-    $request = $request->withHeader('Content-Type', 'application/json');
+    $article = new \Articles\Article();
+    $article->setId($key);
+    $article->setTitle($values['title'][0]['value']);
+    $article->setBody($values['body'][0]['value']);
 
-    try {
-      $this->client->send($request);
+    // Is this a new Article? Create Request.
+    if ($key == "NEW") {
+        $request = new \Articles\CreateRequest();
+        $request->setArticle($article);
+        $this->client->Create($request)->wait();
+        return;
     }
-    catch (RequestException $e) {
-      throw $e;
-    }
+
+    $request = new \Articles\UpdateRequest();
+    $request->setArticle($article);
+    $this->client->Update($request)->wait();
   }
 
   /**
@@ -126,13 +130,9 @@ class RemoteArticleContentEntityStorage extends StorageBase {
    */
   public function deleteMultiple(array $keys) {
     foreach ($keys as $key) {
-      $request = new Request('DELETE', 'http://api:8080/remote_article/' . $key);
-      try {
-        $this->client->send($request);
-      }
-      catch (RequestException $e) {
-        throw $e;
-      }
+       $request = new \Articles\DeleteRequest();
+       $request->setId($key);
+       $this->client->Delete($request)->wait();
     }
   }
 

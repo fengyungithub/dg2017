@@ -6,6 +6,8 @@ CODE_GO="gen/go"
 CODE_PHP="gen/php"
 DOCKER_RUN=docker run -it -w /data -v $(PWD):/data
 
+build: containers gen copy
+
 containers:
 	docker build -t $(IMAGE_GO) containers/go
 	docker build -t $(IMAGE_PHP) containers/php
@@ -18,6 +20,6 @@ gen:
 copy:
 	rsync -avz $(CODE_GO)/* ../api/src/github.com/nickschuch/articles/
 	rsync -avz $(CODE_PHP)/* ../site1/src/
-	# cp $(CODE_GO)/* ../api/src/github.com/nickschuch/articles/
+	rsync -avz $(CODE_PHP)/* ../site2/src/
 
 .PHONY: containers gen	
