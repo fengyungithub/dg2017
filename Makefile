@@ -7,7 +7,7 @@ up:
 
 deps:
 	docker-compose exec site1 /bin/bash -c 'composer install --prefer-dist --no-progress && composer drupal-scaffold'
-	docker-compose exec site1 /bin/bash -c 'composer install --prefer-dist --no-progress && composer drupal-scaffold'
+	docker-compose exec site2 /bin/bash -c 'composer install --prefer-dist --no-progress && composer drupal-scaffold'
 
 install:
 	docker-compose exec site1 /bin/bash -c 'drush site-install -y --site-name="Dept. of Awesome" --account-pass=password standard && chown -R www-data:www-data app'
