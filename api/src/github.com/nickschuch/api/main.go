@@ -23,11 +23,14 @@ func (a *articlesServer) Create(ctx context.Context, in *pb.CreateRequest) (*pb.
 	// Generate a new hash for this new peice of content.
 	u := uid.New(20)
 
+	// Assign this ID to our article as well.
+	in.Article.Id = u
+
 	// Add it to this APIs in memory storage.
 	a.articles[u] = in.Article
 
 	// Pass back the hash, so the user has an ID to what they created.
-	return &pb.CreateResponse{Id: u}, nil
+	return &pb.CreateResponse{Article: in.Article}, nil
 }
 
 func (a *articlesServer) Get(ctx context.Context, in *pb.GetRequest) (*pb.GetResponse, error) {

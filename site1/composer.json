@@ -9,7 +9,7 @@
         "drupal-composer/drupal-scaffold": "~2.0",
         "drupal/core": "~8.2",
         "drush/drush": "~8.1",
-        "grpc/grpc": "v0.15.2"
+        "grpc/grpc": "v1.1.4"
     },
     "require-dev": {
         "drupal/coder": "~8.2",
@@ -24,7 +24,8 @@
     "autoload": {
         "classmap": [],
         "psr-4": {
-            "Things\\": "src/"
+            "Articles\\": "src//Articles",
+            "GPBMetadata\\": "src//GPBMetadata"
         }
     },
     "config": {

@@ -15,4 +15,9 @@ gen:
 	$(DOCKER_RUN) $(IMAGE_GO) /bin/bash -c 'protoc -I . articles.proto --go_out=plugins=grpc:$(CODE_GO)'
 	$(DOCKER_RUN) $(IMAGE_PHP) /bin/bash -c 'protoc -I . articles.proto --php_out=$(CODE_PHP) --grpc_out=$(CODE_PHP) --plugin=protoc-gen-grpc=/usr/local/bin/grpc_php_plugin'
 
+copy:
+	rsync -avz $(CODE_GO)/* ../api/src/github.com/nickschuch/articles/
+	rsync -avz $(CODE_PHP)/* ../site1/src/
+	# cp $(CODE_GO)/* ../api/src/github.com/nickschuch/articles/
+
 .PHONY: containers gen	

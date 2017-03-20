@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c247eeff1c7d4f4e329a0e931e23667",
+    "content-hash": "d0e3160aa87c542e947619952264f2a2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -220,16 +220,16 @@
         },
         {
             "name": "consolidation/annotated-command",
-            "version": "2.4.5",
+            "version": "2.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/annotated-command.git",
-                "reference": "7c97c401ea81549779ce96d62f00d230ed5ff1d8"
+                "reference": "37dad31682b8333c00a84243acd81ad7da5933aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/annotated-command/zipball/7c97c401ea81549779ce96d62f00d230ed5ff1d8",
-                "reference": "7c97c401ea81549779ce96d62f00d230ed5ff1d8",
+                "url": "https://api.github.com/repos/consolidation/annotated-command/zipball/37dad31682b8333c00a84243acd81ad7da5933aa",
+                "reference": "37dad31682b8333c00a84243acd81ad7da5933aa",
                 "shasum": ""
             },
             "require": {
@@ -237,7 +237,7 @@
                 "php": ">=5.4.0",
                 "phpdocumentor/reflection-docblock": "^2.0|^3.0.2",
                 "psr/log": "~1",
-                "symfony/console": "^2.8|~3",
+                "symfony/console": "^2.8 || >=3.0 <3.2.5",
                 "symfony/event-dispatcher": "^2.5|~3",
                 "symfony/finder": "^2.5|~3"
             },
@@ -268,7 +268,7 @@
                 }
             ],
             "description": "Initialize Symfony Console commands from annotated command class methods.",
-            "time": "2017-02-28T22:50:54+00:00"
+            "time": "2017-03-18T00:43:15+00:00"
         },
         {
             "name": "consolidation/output-formatters",
@@ -1233,22 +1233,65 @@
             "time": "2017-02-03T22:48:59+00:00"
         },
         {
-            "name": "grpc/grpc",
-            "version": "v0.15.2",
+            "name": "google/protobuf",
+            "version": "v3.1.0-alpha-1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/grpc/grpc.git",
-                "reference": "15a10b7ea262a95b5c10288f67932d5ba24ac47d"
+                "url": "https://github.com/google/protobuf.git",
+                "reference": "a428e42072765993ff674fda72863c9f1aa2d268"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grpc/grpc/zipball/15a10b7ea262a95b5c10288f67932d5ba24ac47d",
-                "reference": "15a10b7ea262a95b5c10288f67932d5ba24ac47d",
+                "url": "https://api.github.com/repos/google/protobuf/zipball/a428e42072765993ff674fda72863c9f1aa2d268",
+                "reference": "a428e42072765993ff674fda72863c9f1aa2d268",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.0",
-                "stanley-cheung/protobuf-php": "dev-master"
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=4.8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Google\\": "php/src/Google"
+                },
+                "files": [
+                    "php/src/Google/Protobuf/descriptor.php",
+                    "php/src/Google/Protobuf/descriptor_internal.pb.php",
+                    "php/src/Google/Protobuf/Internal/Type.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "proto library for PHP",
+            "homepage": "https://developers.google.com/protocol-buffers/",
+            "keywords": [
+                "proto"
+            ],
+            "time": "2016-09-24T02:12:45+00:00"
+        },
+        {
+            "name": "grpc/grpc",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/grpc/grpc.git",
+                "reference": "ed7d06af3eef1c27f10328c73b3ae3ab10d72b10"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/grpc/grpc/zipball/ed7d06af3eef1c27f10328c73b3ae3ab10d72b10",
+                "reference": "ed7d06af3eef1c27f10328c73b3ae3ab10d72b10",
+                "shasum": ""
+            },
+            "require": {
+                "ext-grpc": "*",
+                "google/protobuf": "v3.1.0-alpha-1",
+                "php": ">=5.5.0"
             },
             "require-dev": {
                 "google/auth": "v0.9"
@@ -1268,7 +1311,7 @@
             "keywords": [
                 "rpc"
             ],
-            "time": "2016-07-14T06:33:26+00:00"
+            "time": "2017-03-02T18:19:16+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1944,16 +1987,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.2",
+            "version": "v0.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "97113db4107a4126bef933b60fea6dbc9f615d41"
+                "reference": "1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/97113db4107a4126bef933b60fea6dbc9f615d41",
-                "reference": "97113db4107a4126bef933b60fea6dbc9f615d41",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e",
+                "reference": "1dd4bbbc64d71e7ec075ffe82b42d9e096dc8d5e",
                 "shasum": ""
             },
             "require": {
@@ -2013,7 +2056,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-03-01T00:13:29+00:00"
+            "time": "2017-03-19T21:40:44+00:00"
         },
         {
             "name": "stack/builder",
@@ -2063,58 +2106,6 @@
                 "stack"
             ],
             "time": "2016-06-02T06:58:42+00:00"
-        },
-        {
-            "name": "stanley-cheung/protobuf-php",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stanley-cheung/Protobuf-PHP.git",
-                "reference": "99dea72f1c7b07d8e8c571b1b5d9d61960050f82"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stanley-cheung/Protobuf-PHP/zipball/99dea72f1c7b07d8e8c571b1b5d9d61960050f82",
-                "reference": "99dea72f1c7b07d8e8c571b1b5d9d61960050f82",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "bin": [
-                "protoc-gen-php.bat",
-                "protoc-gen-php.php"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "DrSlump": "library/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Iván -DrSlump- Montes",
-                    "email": "drslump@pollinimini.net",
-                    "homepage": "https://github.com/drslump/Protobuf-PHP"
-                }
-            ],
-            "description": "PHP implementation of Google's Protocol Buffers",
-            "homepage": "https://github.com/stanley-cheung/Protobuf-PHP",
-            "keywords": [
-                "protobuf",
-                "protocol buffer",
-                "serializing"
-            ],
-            "time": "2017-02-08 21:48:04"
         },
         {
             "name": "symfony-cmf/routing",
@@ -3850,16 +3841,16 @@
         },
         {
             "name": "drupal/coder",
-            "version": "8.2.11",
+            "version": "8.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/klausi/coder.git",
-                "reference": "564a361274d8234d36385766f063ca89c4184479"
+                "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/klausi/coder/zipball/564a361274d8234d36385766f063ca89c4184479",
-                "reference": "564a361274d8234d36385766f063ca89c4184479",
+                "url": "https://api.github.com/repos/klausi/coder/zipball/984c54a7b1e8f27ff1c32348df69712afd86b17f",
+                "reference": "984c54a7b1e8f27ff1c32348df69712afd86b17f",
                 "shasum": ""
             },
             "require": {
@@ -3883,7 +3874,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-03-02T08:57:31+00:00"
+            "time": "2017-03-18T10:28:49+00:00"
         },
         {
             "name": "mikey179/vfsStream",

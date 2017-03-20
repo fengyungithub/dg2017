@@ -6,9 +6,6 @@ use Drupal\Core\Language\LanguageInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use Drupal\Core\KeyValueStore\StorageBase;
-use Drupal\Component\Serialization\SerializationInterface;
-use Drupal\Core\Database\Query\Merge;
-use Drupal\Core\Database\Connection;
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 
 /**
@@ -40,7 +37,7 @@ class RemoteArticleContentEntityStorage extends StorageBase {
    * @param string $table
    *   The name of the SQL table to use, defaults to key_value.
    */
-  public function __construct($collection, \GuzzleHttp\Client $client) {
+  public function __construct($collection, \Articles\ArticlesClient $client) {
     parent::__construct($collection);
     $this->client = $client;
   }
@@ -73,25 +70,23 @@ class RemoteArticleContentEntityStorage extends StorageBase {
    * {@inheritdoc}
    */
   public function getAll() {
-    $remote_articles = array();
+    $articles = array();
 
-    $request = new Request('GET', 'http://api:8080/remote_articles');
+    $opts = new \Articles\ListRequest();
 
-    try {
-      $response = $this->client->send($request);
-      $remote_articles = json_decode($response->getBody(), TRUE);
-      foreach ($remote_articles as $id => $remote_article) {
-        foreach ($remote_article as $field => $value) {
-          $remote_articles[$id][$field] = [LanguageInterface::LANGCODE_DEFAULT => $value];
-        }
-        $remote_articles[$id]['id'] = [LanguageInterface::LANGCODE_DEFAULT => $id];
-      }
-    }
-    catch (RequestException $e) {
-      throw $e;
+    // @todo, We should be checking the return status.
+    list($resp, $status) = $this->client->List($opts)->wait();
+
+    foreach ($resp->getArticles() as $delta => $article) {
+        $id = $article->getId();
+        $articles[$id] = array(
+          'id' => [LanguageInterface::LANGCODE_DEFAULT => $id],
+          'title' => [LanguageInterface::LANGCODE_DEFAULT => $article->getTitle()],
+          'body' => [LanguageInterface::LANGCODE_DEFAULT => $article->getBody()],
+      );
     }
 
-    return $remote_articles;
+    return $articles;
   }
 
   /**

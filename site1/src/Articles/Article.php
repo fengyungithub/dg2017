@@ -14,11 +14,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class Article extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <code>string title = 1;</code>
+     * <code>string id = 1;</code>
+     */
+    private $id = '';
+    /**
+     * <code>string title = 2;</code>
      */
     private $title = '';
     /**
-     * <code>string body = 2;</code>
+     * <code>string body = 3;</code>
      */
     private $body = '';
 
@@ -28,7 +32,24 @@ class Article extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <code>string title = 1;</code>
+     * <code>string id = 1;</code>
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * <code>string id = 1;</code>
+     */
+    public function setId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->id = $var;
+    }
+
+    /**
+     * <code>string title = 2;</code>
      */
     public function getTitle()
     {
@@ -36,7 +57,7 @@ class Article extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <code>string title = 1;</code>
+     * <code>string title = 2;</code>
      */
     public function setTitle($var)
     {
@@ -45,7 +66,7 @@ class Article extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <code>string body = 2;</code>
+     * <code>string body = 3;</code>
      */
     public function getBody()
     {
@@ -53,7 +74,7 @@ class Article extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <code>string body = 2;</code>
+     * <code>string body = 3;</code>
      */
     public function setBody($var)
     {

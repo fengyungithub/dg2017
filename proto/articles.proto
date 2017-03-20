@@ -14,7 +14,7 @@ message CreateRequest {
 }
 
 message CreateResponse {
-	string id = 1;
+	Article article = 1;
 }
 
 message GetRequest {
@@ -41,6 +41,7 @@ message ListResponse {
 }
 
 message Article {
-  string title = 1;
-  string body = 2;
+  string id = 1;
+  string title = 2;
+  string body = 3;
 }
